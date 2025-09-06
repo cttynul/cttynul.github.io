@@ -70,7 +70,7 @@ const projects = [
     },
     {
         title: 'fomn',
-        description: 'A (very) personal RSS Feed reader used to check a couple of Cybersecurity feeds instead of browsing N websites',
+        description: 'Just a personal preconfigured RSS feed reader used to check something but that can be used and customized by you',
         markdownFile: 'fomn.md',
         stack: ['js'],
     },
