@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>me</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<section id="hero" class="section">
+    <div class="terminal hero-content">
+        <div class="top">
+            <div class="btns">
+                <span class="circle red"></span>
+                <span class="circle yellow"></span>
+                <span class="circle green"></span>
+            </div>
+            <div class="title">[cttynul@github.io]</div>
+        </div>
+        <pre class="content-terminal">
+            <span class="prompt">[cttynul@github.io ~]$</span> <span id="whoami-text"></span>
+            <span id="whoami-output" class="hidden">
+                                                    _  
+                        _     _                    | | 
+                 ____ _| |_ _| |_ _   _ ____  _   _| | 
+                / ___|_   _|_   _) | | |  _ \| | | | | 
+               ( (___  | |_  | |_| |_| | | | | |_| | | 
+                \____)  \__)  \__)\__  |_| |_|____/ \_)
+                                 (____/                
+            </span>
+            <span id="details-text" class="hidden">
+                <span class="bullet">[x]</span> full stack developer 👨‍💻
+                <span class="bullet">[x]</span> systems architect ⚙️
+                <span class="bullet">[x]</span> python evangelist 📖
+                <span class="bullet">[x]</span> musician in spare time 🎹
+                <span class="bullet">[x]</span> italian 🍕
+            </span>
+            <span class="prompt">[cttynul@github.io ~]$</span> <span id="typing-cursor">|</span>
+        </pre>
+    </div>
+</section>
+
+    <section id="about" class="section is-hidden">
+        <h2 class="section-title">about</h2>
+        <div class="about-content">
+            <p>My digital journey began with the screech of a 56k modem, a sound that kicked off a decade-plus career of building, tinkering, and, on occasion, fixing what I accidentally broke.</p>
+
+            <p>I spend my days heroically preventing digital Armageddon. From Python to PHP, my toolkit is broad, and I'm fluent in a range of languages, including Visual Basic (yes, I said it, and it will always be Visual Basic!). I can even spot a Base64 encoded string on sight, a truly useless superpower.</p>
+
+            <p>While I've developed a genuine connection with most technologies, Ruby on Rails remains the friendly exception.</p><br>
+
+            <a href="#showroom" class="cta-button">showroom</a>
+        </div>
+        <div class="about-content-bg"></div>
+    </section>
+
+    <section id="showroom" class="section is-hidden">
+        <h2 class="section-title">showroom</h2>
+        <div class="project-list-bg"></div>
+        <div class="project-list"></div>
+    </section>
+    
+    <footer class="footer is-hidden">
+        <div class="contact-links">
+            <a href="https://github.com/cttynul" class="contact-link">GitHub</a>
+        </div>
+        <p>
+            &copy; <span id="year"></span> cttynul. All rights reserved.
+        </p>
+    </footer>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const whoamiText = document.getElementById('whoami-text');
+        const whoamiOutput = document.getElementById('whoami-output');
+        const detailsText = document.getElementById('details-text');
+        const typingCursor = document.getElementById('typing-cursor');
+
+        const phrases = [
+            "not a real developer 👨‍💻",
+            "infrastructure therapist ⚙️",
+            "wheel reinvention engineer 🛞",
+            "serverless advocate 🥑",
+            "italian 🍕",
+            "cloud wrangler ☁️"
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        async function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            const currentText = isDeleting
+                ? currentPhrase.substring(0, charIndex--)
+                : currentPhrase.substring(0, charIndex++);
+
+            detailsText.innerHTML = `<span class="bullet">[x]</span> ${currentText}`;
+
+            const typingSpeed = isDeleting ? 30 : 80;
+
+            if (!isDeleting && charIndex === currentPhrase.length + 1) {
+                // Pause at the end of the phrase
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                isDeleting = true;
+            } else if (isDeleting && charIndex === -1) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                // Pause before starting the next phrase
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+
+            setTimeout(typeWriter, typingSpeed);
+        }
+
+        async function startTerminalAnimation() {
+            // Animazione "whoami"
+            const whoami = "whoami";
+            for (let i = 0; i < whoami.length; i++) {
+                whoamiText.textContent += whoami[i];
+                await new Promise(resolve => setTimeout(resolve, 80));
+            }
+
+            // Attendi e mostra l'output ASCII
+            await new Promise(resolve => setTimeout(resolve, 500));
+            whoamiOutput.classList.remove('hidden');
+
+            // Attendi e inizia l'animazione di digitazione
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            detailsText.classList.remove('hidden');
+            whoamiText.textContent = "whoami"; // Reset the text to type the dynamic phrases
+            
+            typeWriter();
+        }
+
+        startTerminalAnimation();
+    });
+</script>
+<div id="cookie-banner" class="cookie-banner is-hidden">
+    <p>
+        This website uses only essential technical cookies to ensure its proper functioning. No user data is collected or tracked.
+    </p>
+    <button id="accept-cookies" class="cta-button">Got it!</button>
+</div>
+</body>
+</html>

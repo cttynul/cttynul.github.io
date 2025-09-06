@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600');
+
+:root {
+    --bg-color: #0d1117;
+    --primary-color: #4dc2f2;
+    --secondary-color: #aa55ff;
+    --gradient-bg: linear-gradient(135deg, #4da2f2 0%, #aa55ff 100%);
+    --text-color: #f0f6fc;
+    --sub-text-color: #8b949e;
+}
+
+/* Stili Globali */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Sfondo animato */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-bg);
+    opacity: 0.1;
+    z-index: -1;
+    animation: background-move 20s infinite alternate;
+}
+
+@keyframes background-move {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+/* Sezioni e titoli */
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./home.jpg'); /* Immagine placeholder */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%); /* Per la compatibilità con i browser basati su WebKit */
+}
+
+#hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 6vw;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--sub-text-color);
+    margin-bottom: 30pt;
+}
+
+.cta-button {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    color: var(--bg-color);
+    background: var(--gradient-bg);
+    -webkit-text-fill-color: var(--bg-color);
+}
+
+/* Stili per la sezione "About" */
+.about-content {
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--sub-text-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Nuovo stile per il background della sezione About */
+.about-content-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    opacity: 0.05;
+    z-index: 0;
+    animation: about-scroll 60s linear infinite;
+}
+
+/* Stili per il testo del background */
+.about-content-bg p {
+    white-space: nowrap;
+    font-size: 1.1rem;
+    color: var(--sub-text-color);
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+@keyframes about-scroll {
+    from {
+        transform: translate(-50%, -50%) translateX(0);
+    }
+    to {
+        transform: translate(-50%, -50%) translateX(-50%);
+    }
+}
+
+/* Stili per la lista dei progetti principali */
+.project-list {
+    width: 100%;
+    max-width: 900px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Nuovo stile per il background dei progetti */
+.project-list-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    opacity: 0.05;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    animation: projects-bg-scroll 60s linear infinite;
+}
+
+@keyframes projects-bg-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Stili per le colonne di schede in background */
+.project-list-bg .project-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-shrink: 0;
+}
+
+/* Stili per il singolo progetto */
+.project-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    width: calc(33.333% - 2rem);
+    min-width: 300px;
+    flex-grow: 1;
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--primary-color);
+}
+
+/* Stili per gli item nel background */
+.project-list-bg .project-item {
+    min-width: 300px;
+    margin: 0;
+    width: auto;
+}
+
+/* Media query per schermi più piccoli */
+@media (max-width: 768px) {
+    .project-item {
+        margin: 0 1rem;
+        width: auto;
+    }
+    
+    .project-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+.project-item h3 {
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 0;
+}
+
+/* Stili per lo stack tecnologico */
+.tech-stack {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tech-stack .fa-solid,
+.tech-stack .fa-brands {
+    font-size: 2rem;
+    color: var(--sub-text-color);
+    transition: color 0.3s ease;
+}
+
+.tech-stack .fa-solid:hover,
+.tech-stack .fa-brands:hover {
+    color: var(--primary-color);
+}
+
+/* === MODALE === */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 17, 23, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Questa classe verrà aggiunta con JavaScript per mostrare il modale */
+.modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 95%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 50px rgba(77, 194, 242, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.4s ease-in-out;
+}
+
+.modal.open .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    color: var(--sub-text-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--primary-color);
+}
+
+/* Stili per il contenuto del markdown nel modale */
+.markdown-content h1, h2 {
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Stili per i blocchi di codice */
+.markdown-content pre {
+    background-color: #161b22;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.markdown-content code {
+    background-color: #161b22;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+/* Stili per le tabelle */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content th {
+    background-color: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+}
+
+/* Stili per i link con sfumatura */
+.gradient-text {
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+a {
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Stili per i link di contatto */
+.contact-link {
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animazione di fade-in allo scroll */
+.is-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--sub-text-color);
+    font-size: 0.9rem;
+    margin-top: 40pt;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal .top {
+    background-color: #1f2a37;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.terminal .btns {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+}
+
+.terminal .circle {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.terminal .red { background: #ff5f57; }
+.terminal .yellow { background: #ffbd2e; }
+.terminal .green { background: #28c940; }
+
+.terminal .title {
+    color: var(--sub-text-color);
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.terminal {
+    width: 90%;
+    max-width: 900px;
+    background-color: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(77, 194, 242, 0.2);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.terminal .content-terminal {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 20px;
+    white-space: pre;
+    overflow-x: auto;
+    text-align: left;
+}
+
+/* Regole per schermi più piccoli */
+@media (max-width: 768px) {
+    .terminal .content-terminal {
+        font-size: 0.85rem;
+        padding: 15px;
+    }
+}
+
+/* Forzo il riposizionamento del logo ASCII su schermi piccoli */
+@media (max-width: 480px) {
+    #whoami-output {
+        font-size: 0.6rem;
+        line-height: 0.8;
+    }
+}
+.terminal .content-terminal .prompt {
+    color: var(--primary-color);
+}
+
+.terminal .content-terminal .bullet {
+    color: var(--secondary-color);
+}
+
+.terminal .content-terminal .hidden {
+    display: none;
+}
+
+#typing-cursor {
+    animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { color: transparent }
+    50% { color: var(--text-color) }
+}
+
+/* Stile per il cookie banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px 25px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(77, 194, 242, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cookie-banner p {
+    margin: 0;
+    color: var(--sub-text-color);
+    font-size: 0.9rem;
+}
+
+/* Stile per il pulsante del cookie banner */
+.cookie-banner .cta-button {
+    margin-top: 0; /* Rimuove il margine superiore predefinito */
+    background: var(--gradient-bg);
+    color: var(--bg-color); /* Rende il testo visibile sullo sfondo sfumato */
+    border: none; /* Rimuove il bordo per un look più pulito */
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cookie-banner .cta-button:hover {
+    transform: scale(1.05); /* Piccolo effetto di ingrandimento al passaggio del mouse */
+    color: var(--bg-color);
+}
