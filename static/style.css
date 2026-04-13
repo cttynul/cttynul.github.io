@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=JetBrains+Mono&display=swap');
+
+body {
+    background-color: #050505;
+    color: #ededed;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.sig-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    stroke: white;
+    fill: none;
+    stroke-width: 1.5;
+}
+
+/* Marquee Logica Infinita - Preparata per GSAP */
+.marquee-container {
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+    background: #080808;
+    overflow: hidden;
+    position: relative;
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    padding-right: 10rem;
+}
+
+.marquee-item i,
+.marquee-item img {
+    font-size: 3.5rem;
+    opacity: 0.2;
+    transition: all 0.4s ease;
+    filter: brightness(0) invert(1);
+}
+
+.marquee-item i:hover,
+.marquee-item img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Stack Marquee */
+.stack-marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    border-top: 1px solid #1a1a1a;
+}
+
+.stack-marquee {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.stack-marquee i,
+.stack-marquee img {
+    height: 3.5rem;
+    width: auto;
+    color: #ffffff;
+    opacity: 0.1;
+    margin: 0 4rem;
+    transition: all 0.4s ease;
+    filter: brightness(0) invert(1);
+}
+
+.stack-marquee i:hover,
+.stack-marquee img:hover {
+    opacity: 1;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Project Cards */
+.project-card {
+    border-bottom: 1px solid #1a1a1a !important;
+    transition: background 0.4s ease;
+}
+
+.project-card:hover {
+    background-color: #0c0c0c;
+}
+
+.project-title {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Modal & Markdown */
+#project-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 100px 5vw;
+}
+
+#project-modal.open {
+    display: block;
+}
+
+.markdown-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.markdown-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 2.5rem;
+    color: white;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.markdown-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content p {
+    color: #888;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.markdown-content pre {
+    background: #080808;
+    padding: 1.5rem;
+    border: 1px solid #1a1a1a;
+    overflow-x: auto;
+    max-width: 100%;
+    margin: 2rem 0;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #222 transparent;
+}
+
+/* Webkit Scrollbar Styling (Chrome, Safari, Edge) */
+.markdown-content pre::-webkit-scrollbar {
+    height: 4px;
+}
+
+.markdown-content pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.markdown-content pre::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.markdown-content pre::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+.markdown-content code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #ededed;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.markdown-content pre code {
+    white-space: pre;
+    word-break: normal;
+}
+
+.markdown-content ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
+    color: #888;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border: 1px solid #1a1a1a;
+}
+
+.markdown-content a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.2s;
+}
+
+.markdown-content a:hover {
+    opacity: 0.7;
+}
+
+.logo-full {
+    height: 4.5rem;
+    width: auto;
+    object-fit: contain;
+}
