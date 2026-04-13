@@ -82,7 +82,7 @@ const openModal = async (project) => {
         primaryUrl = project.markdownFile;
     } else if (project.markdownFile && !['README.md', 'readme.md'].includes(project.markdownFile)) {
         // Percorso per file personalizzati nel repository del portfolio
-        primaryUrl = `${baseUrl}/cttynul.github.io/refs/heads/master/assets/mds/${project.markdownFile}`;
+        primaryUrl = `${baseUrl}/cttynul.github.io/refs/heads/master/static/project/${project.markdownFile}`;
     } else {
         // Percorso standard per README nel repository del progetto
         primaryUrl = `${baseUrl}/${project.title}/refs/heads/master/README.md`;
